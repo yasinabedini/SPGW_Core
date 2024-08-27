@@ -1,0 +1,6 @@
+@SPGW.Endpoint_HostAddress = http://localhost:5152
+
+GET {{SPGW.Endpoint_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
