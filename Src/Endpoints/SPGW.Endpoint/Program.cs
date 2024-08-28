@@ -1,18 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using SPGW.Infra.Contexts;
+using SPGW.Application;
+using SPGW.Domain.Psp.Repositories;
+using SPGW.Infra.Models.Psp.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddApplication();
 
 builder.Services.AddControllersWithViews();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<SPGWContext>(options =>
-      options.UseSqlServer(builder.Configuration.GetConnectionString("LOCAL_DB"))
-             .UseLazyLoadingProxies()); // If you need lazy loading proxies
+builder.Services.AddHttpContextAccessor();
 
 
 var app = builder.Build();
